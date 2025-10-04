@@ -1,0 +1,117 @@
+"use client"
+
+import { useState } from "react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { X, Heart } from "lucide-react"
+import Image from "next/image"
+
+interface PhotoCardProps {
+  image: string
+  wishMessage: string
+  title: string
+}
+
+function SparkleSVG({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 0L14.09 8.26L22 6L14.09 9.74L12 18L9.91 9.74L2 12L9.91 8.26L12 0Z" fill="#F6E05E" />
+      <path d="M12 4L13.09 9.26L18 8L13.09 10.74L12 16L10.91 10.74L6 12L10.91 9.26L12 4Z" fill="#FBB6CE" />
+    </svg>
+  )
+}
+
+function HeartSVG({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.04L12 21.35Z"
+        fill="#E53E3E"
+      />
+    </svg>
+  )
+}
+
+export function PhotoCard({ image, wishMessage, title }: PhotoCardProps) {
+  const [isFlipped, setIsFlipped] = useState(false)
+
+  const handleCardClick = () => {
+    setIsFlipped(!isFlipped)
+  }
+
+  return (
+    <div className="relative group">
+      {/* Main Card */}
+      <Card
+        className={`cursor-pointer transition-all duration-500 transform hover:scale-105 hover:shadow-2xl ${
+          isFlipped ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+        onClick={handleCardClick}
+      >
+        <CardContent className="p-0 relative overflow-hidden rounded-lg">
+          <div className="relative">
+            <Image
+              src={image || "/placeholder.svg"}
+              alt={title}
+              width={300}
+              height={300}
+              className="w-full h-64 object-cover sepia-filter rounded-lg"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-lg" />
+            <div className="absolute bottom-4 left-4 right-4">
+              <h3 className="script-font text-white text-xl font-semibold drop-shadow-lg">{title}</h3>
+              <p className="text-white text-sm mt-1 drop-shadow-md">Click to see your wish!</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Wish Card (Popup) */}
+      {isFlipped && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <Card className="max-w-md w-full bg-gradient-to-br from-pink-100 to-purple-100 border-2 border-primary/20 shadow-2xl transform animate-in zoom-in-95 duration-300">
+            <CardContent className="p-6 relative">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="absolute top-2 right-2 text-muted-foreground hover:text-foreground"
+                onClick={handleCardClick}
+              >
+                <X className="h-4 w-4" />
+              </Button>
+
+              <div className="text-center mb-4">
+                <Heart className="h-8 w-8 text-red-500 mx-auto mb-2 animate-pulse" />
+                <h3 className="script-font text-2xl font-bold text-amber-800 mb-2">{title}</h3>
+              </div>
+
+              <div className="relative">
+                <Image
+                  src={image || "/placeholder.svg"}
+                  alt={title}
+                  width={200}
+                  height={200}
+                  className="w-32 h-32 object-cover rounded-full mx-auto mb-4 border-4 border-white shadow-lg"
+                />
+              </div>
+
+              <p className="text-gray-800 text-center leading-relaxed font-medium">{wishMessage}</p>
+
+              <div className="flex justify-center mt-4 gap-2">
+                <div className="w-6 h-6 sparkle">
+                  <SparkleSVG className="w-full h-full" />
+                </div>
+                <div className="w-6 h-6 sparkle" style={{ animationDelay: "0.5s" }}>
+                  <HeartSVG className="w-full h-full" />
+                </div>
+                <div className="w-6 h-6 sparkle" style={{ animationDelay: "1s" }}>
+                  <SparkleSVG className="w-full h-full" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+    </div>
+  )
+}
