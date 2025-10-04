@@ -18,21 +18,21 @@ export default function HomePage() {
       id: 1,
       image: "/pic1.jpeg",
       wishMessage:
-        "WOW",
+        "55 years ago... The gorgeous lady, oh so lovely!",
       title: "🫨",
     },
     {
       id: 2,
       image: "/pic2.jpeg",
       wishMessage:
-        "Happy Birthday to the most wonderful Dida!",
+        "Always game for fun and games!",
       title: "Madcaps",
     },
     {
       id: 3,
       image: "/pic3.jpeg",
       wishMessage:
-        "WHAT A LOVELY PICTURE",
+        "Match made in heaven, the awesomest couple ❤️",
       title: "Dida & Dadu",
     },
     {
@@ -40,20 +40,20 @@ export default function HomePage() {
       image: "/pic4.jpeg",
       wishMessage:
         "😎😎😎",
-      title: "Dida's Gang",
+      title: "Young always... With her gang!",
     },
     {
       id: 5,
       image: "/pic5.jpeg",
       wishMessage:
-        "Here's to another year of your incredible spirit, endless love, and the joy you bring to everyone around you!",
+        "The family star... The Rockstar wife, mother, grandmother et al.!",
       title: "Grihapravesh",
     },
     {
       id: 6,
       image: "/pic6.jpeg",
       wishMessage:
-        "Happy Birthday Dida!!! We love you",
+        "Our Didas... The beautiful & vivacious trio",
       title: "The Sisters",
     },
   ]

@@ -60,7 +60,7 @@ export function PhotoCard({ image, wishMessage, title }: PhotoCardProps) {
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-lg" />
             <div className="absolute bottom-4 left-4 right-4">
               <h3 className="script-font text-white text-xl font-semibold drop-shadow-lg">{title}</h3>
-              <p className="text-white text-sm mt-1 drop-shadow-md">Click to see your wish!</p>
+              <p className="text-white text-sm mt-1 drop-shadow-md">Click me!</p>
             </div>
           </div>
         </CardContent>
