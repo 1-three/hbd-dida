@@ -68,44 +68,56 @@ export function PhotoCard({ image, wishMessage, title }: PhotoCardProps) {
 
       {/* Wish Card (Popup) */}
       {isFlipped && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <Card className="max-w-md w-full bg-gradient-to-br from-pink-100 to-purple-100 border-2 border-primary/20 shadow-2xl transform animate-in zoom-in-95 duration-300">
-            <CardContent className="p-6 relative">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <Card className="max-w-lg w-full bg-[#101a2b] border-0 shadow-2xl transform animate-in zoom-in-95 duration-300 overflow-hidden">
+            <CardContent className="p-0 relative">
               <Button
                 variant="ghost"
                 size="sm"
-                className="absolute top-2 right-2 text-muted-foreground hover:text-foreground"
+                className="absolute top-4 right-4 z-10 text-blue-100 hover:text-white hover:bg-blue-900/30 rounded-full w-8 h-8 p-0"
                 onClick={handleCardClick}
               >
-                <X className="h-4 w-4" />
+                <X className="h-5 w-5" />
               </Button>
 
-              <div className="text-center mb-4">
-                <Heart className="h-8 w-8 text-red-500 mx-auto mb-2 animate-pulse" />
-                <h3 className="script-font text-2xl font-bold text-amber-800 mb-2">{title}</h3>
+              {/* Header Section with Image */}
+              <div className="relative bg-gradient-to-br from-[#1e3357] via-[#223c6a] to-[#16213a] p-8 pb-20">
+                <div className="absolute top-0 left-0 w-full h-full opacity-10">
+                  <div className="absolute top-4 left-4 w-20 h-20">
+                    <HeartSVG className="w-full h-full" />
+                  </div>
+                  <div className="absolute bottom-8 right-8 w-16 h-16">
+                    <SparkleSVG className="w-full h-full" />
+                  </div>
+                </div>
+
+                <div className="relative z-10">
+                  <Heart className="h-6 w-6 text-blue-200 mx-auto mb-3 animate-pulse" />
+                  <h3 className="script-font text-3xl font-bold text-blue-100 text-center mb-6 drop-shadow-lg">
+                    {title}
+                  </h3>
+                </div>
+
+                <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-700 to-blue-400 rounded-full blur-xl opacity-40"></div>
+                    <Image
+                      src={image || "/placeholder.svg"}
+                      alt={title}
+                      width={200}
+                      height={200}
+                      className="relative w-32 h-32 object-cover rounded-full border-4 border-blue-100 shadow-2xl"
+                    />
+                  </div>
+                </div>
               </div>
 
-              <div className="relative">
-                <Image
-                  src={image || "/placeholder.svg"}
-                  alt={title}
-                  width={200}
-                  height={200}
-                  className="w-32 h-32 object-cover rounded-full mx-auto mb-4 border-4 border-white shadow-lg"
-                />
-              </div>
-
-              <p className="text-gray-800 text-center leading-relaxed font-medium">{wishMessage}</p>
-
-              <div className="flex justify-center mt-4 gap-2">
-                <div className="w-6 h-6 sparkle">
-                  <SparkleSVG className="w-full h-full" />
-                </div>
-                <div className="w-6 h-6 sparkle" style={{ animationDelay: "0.5s" }}>
-                  <HeartSVG className="w-full h-full" />
-                </div>
-                <div className="w-6 h-6 sparkle" style={{ animationDelay: "1s" }}>
-                  <SparkleSVG className="w-full h-full" />
+              {/* Content Section */}
+              <div className="pt-20 pb-8 px-8">
+                <div className="bg-gradient-to-br from-[#1e3357] to-[#223c6a] rounded-2xl p-6 shadow-inner">
+                  <p className="text-blue-100 text-center leading-relaxed text-base font-medium">
+                    {wishMessage}
+                  </p>
                 </div>
               </div>
             </CardContent>
