@@ -39,8 +39,8 @@ export default function HomePage() {
       id: 4,
       image: "/pic4.jpeg",
       wishMessage:
-        "😎😎😎",
-      title: "Young always... With her gang!",
+        "Young always... With her gang!",
+      title: "😎😎😎",
     },
     {
       id: 5,
